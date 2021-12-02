@@ -1,12 +1,9 @@
 package day1
 
-import os.pwd
-
-import scala.io.Source
+import util.FileUtil
 
 @main def myApp =
-  val measurements = os.read(pwd / "src" / "main" / "scala" / "day1" / "input")
-    .linesIterator
+  val measurements = FileUtil.getLinesIterator(adventDay = 1)
     .map(_.toInt)
     .toList
 
