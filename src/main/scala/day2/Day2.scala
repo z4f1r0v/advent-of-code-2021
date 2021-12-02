@@ -6,7 +6,7 @@ import util.FileUtil
 @main def myApp2 =
   val commands = FileUtil.getLinesIterator(adventDay = 2).toList
 
-  def submarineNavigation(input: List[String], commandInterpreter: (Position, String, Int) => Position): Int = {
+  def submarineNavigation(input: List[String])(commandInterpreter: (Position, String, Int) => Position): Int = {
     input.foldLeft(Position()) {
       (p, c) =>
         val commandUnit = c.split(" ")
@@ -16,9 +16,10 @@ import util.FileUtil
     }.product
   }
 
+  val submarineNavigationWithInput = submarineNavigation(commands)
+
   def part1(input: List[String]) =
-    submarineNavigation(
-      input,
+    submarineNavigationWithInput(
       (p, command, value) => command match {
         case "forward" => p.copy(horizontal = p.horizontal + value)
         case "down" => p.copy(depth = p.depth + value)
@@ -29,8 +30,7 @@ import util.FileUtil
   println(part1(commands))
 
   def part2(input: List[String]) =
-    submarineNavigation(
-      input,
+    submarineNavigationWithInput(
       (p, command, unit) => command match {
         case "forward" => p.copy(horizontal = p.horizontal + unit, depth = p.depth + p.aim * unit)
         case "down" => p.copy(aim = p.aim + unit)
