@@ -2,8 +2,9 @@ package day1
 
 import util.FileUtil
 
+// https://adventofcode.com/2021/day/1
 @main def myApp =
-  val measurements = FileUtil.getLinesIterator(adventDay = 1)
+  val measurements = FileUtil.getLinesIterator(1)
     .map(_.toInt)
     .toList
 

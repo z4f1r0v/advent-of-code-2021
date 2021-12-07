@@ -3,9 +3,9 @@ package util
 import os.pwd
 
 object FileUtil {
-  def getLinesIterator(adventDay: Int): Iterator[String] =
-    os.read(pwd / "src" / "main" / "scala" / s"day${adventDay}" / "input")
-      .linesIterator
+  def readInput(day: Int): String = os.read(pwd / "src" / "main" / "scala" / s"day${day}" / "input")
+  
+  def getLinesIterator(day: Int): Iterator[String] = readInput(day).linesIterator
     
-  def getLinesList(adventDay: Int): List[String] = getLinesIterator(adventDay).toList
+  def getLinesList(day: Int): List[String] = getLinesIterator(day).toList
 }

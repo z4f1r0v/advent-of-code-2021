@@ -3,8 +3,9 @@ package day2
 import day2.Position
 import util.FileUtil
 
+// https://adventofcode.com/2021/day/2
 @main def myApp2 =
-  val commands = FileUtil.getLinesList(adventDay = 2)
+  val commands = FileUtil.getLinesList(day = 2)
 
   def submarineNavigation(input: List[String])(commandInterpreter: (Position, String, Int) => Position): Int = {
     input.foldLeft(Position()) {

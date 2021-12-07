@@ -5,8 +5,9 @@ import util.FileUtil
 import scala.annotation.tailrec
 import scala.collection.mutable
 
+// https://adventofcode.com/2021/day/3
 @main def myApp3 =
-  val commands = FileUtil.getLinesList(adventDay = 3)
+  val numbers = FileUtil.getLinesList(day = 3)
 
     def part1(input: List[String]) =
       val zerosPerColumn = mutable.Map.from(List.fill(input.head.length)(0).zipWithIndex.map(_.swap))
@@ -32,7 +33,7 @@ import scala.collection.mutable
 
       gammaRate * epsilonRate
 
-    println(part1(commands))
+    println(part1(numbers))
 
   def part2(input: List[String]) =
     @tailrec
@@ -60,4 +61,4 @@ import scala.collection.mutable
 
     List(oxygenGeneratorRating, cO2ScrubberRating).map(Integer.parseInt(_, 2)).product
 
-  println(part2(commands))
+  println(part2(numbers))
