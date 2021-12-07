@@ -16,14 +16,18 @@ import scala.collection.mutable
   val boards = input.tail.map(parseBoard)
 
   def findWinningBoard(drawnNumbers: Array[Int], boards: Vector[Vector[Int]]): (Int, Vector[Vector[Int]]) =
+    // convert all numbers to indexes
     val number2i = drawnNumbers.zipWithIndex.toMap
+    // convert board of numbers to board of indexes
     val iBoard = boards.map(_.map(number2i))
     val iRows = iBoard.map(_.max)
     val iCols = iBoard.transpose.map(_.max)
+    // get earliest index
     val numberIndex = iRows.min min iCols.min
+    // mark all numbers earlier than chosen index as 0
     val markedBoard = boards.map(_.map(x => if (number2i(x) <= numberIndex) 0 else x))
     (numberIndex, markedBoard)
-    
+
   def solution(using Ordering[Int]) =
     val (numberIndex, winningBoard) = boards.map(findWinningBoard(drawnNumbers, _)).minBy(_._1)
     val unmarkedNumbersSum = winningBoard.iterator.map(_.sum).sum
